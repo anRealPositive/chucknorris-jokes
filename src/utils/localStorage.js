@@ -1,5 +1,4 @@
 export const setItem = (key, item) => {
-    console.log('first', key, item);
     try {
         localStorage.setItem(key, JSON.stringify(item));
     } catch (e) {
