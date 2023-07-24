@@ -7,6 +7,12 @@ import JokeItem from '../JokeItem';
 // context
 import { JokesContext } from '../../context/JokesProvider';
 
+/**
+ * Returns active jokes or favorite one
+ * @param {boolean} isFavouriteJokes
+ * @returns {JSX.Element}
+ */
+
 const JokeList = ({ isFavouriteJokes }) => {
     const { jokes, favouriteJokes } = useContext(JokesContext);
 

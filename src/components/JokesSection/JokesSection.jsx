@@ -23,14 +23,14 @@ const JokesSection = ({ currentTab }) => {
             { [JOKES_TABS.JOKES, JOKES_TABS.FAVOURITE_JOKES].map((jokeType) => {
                 return (
                     <Box
-                        key={jokeType}
+                        key={ jokeType }
                         role='tabpanel'
-                        hidden={currentTab !== jokeType}
-                        className={styles.box}
+                        hidden={ currentTab !== jokeType }
+                        className={ styles.box }
                     >
-                    <JokeList
-                        isFavouriteJokes={Boolean(jokeType === JOKES_TABS.FAVOURITE_JOKES)}
-                    />
+                        <JokeList
+                            isFavouriteJokes={Boolean(jokeType === JOKES_TABS.FAVOURITE_JOKES)}
+                        />
                     </Box>
                 )
             })}
