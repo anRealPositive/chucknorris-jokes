@@ -18,17 +18,9 @@ const JokeList = ({ isFavouriteJokes }) => {
 
     const currentJokes = isFavouriteJokes ? favouriteJokes : jokes;
 
-    return (
-        <>
-            { currentJokes &&
-                currentJokes.map(currentJoke => (
-                <JokeItem
-                    key={currentJoke.id}
-                    joke={currentJoke}
-                />
-            ))}
-        </>
-    );
+    return currentJokes?.map((currentJoke) => (
+        <JokeItem key={currentJoke.id} joke={currentJoke} />
+    ));
 };
 
 export default JokeList;

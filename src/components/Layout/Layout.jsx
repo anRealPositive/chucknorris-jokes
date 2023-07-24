@@ -23,34 +23,28 @@ import styles from './styles.module.scss';
 
 const Layout = () => {
     const [currentTab, setCurrentTab] = useState(JOKES_TABS.JOKES);
-    const { 
-        isLoading,
-        error,
-    } = useContext(JokesContext);
+    const { isLoading, error } = useContext(JokesContext);
 
-    const changeTab = (event, value) => {
+    const changeTab = (_, value) => {
         setCurrentTab(value);
     };
 
     if (error) {
         return <div>Error: {error.message}</div>;
-    };
+    }
 
     if (isLoading) return <Loader />;
 
     return (
         <div className={styles.root}>
             <CssBaseline />
-            <Container
-                maxWidth='md'
-                className={styles.container}
-            >
+            <Container maxWidth='md' className={styles.container}>
                 <Header
                     title='Chuck Norris Jokes'
                     changeTab={changeTab}
                     currentTab={currentTab}
                 />
-                <JokesSection currentTab={currentTab}/>
+                <JokesSection currentTab={currentTab} />
             </Container>
         </div>
     );

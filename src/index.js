@@ -6,13 +6,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 // context
-import { JokesProvider } from './context/JokesProvider'
+import { JokesProvider } from './context/JokesProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <>
-        <JokesProvider>
-            <App />
-        </JokesProvider>
-    </>
+    <JokesProvider>
+        <App />
+    </JokesProvider>
 );
