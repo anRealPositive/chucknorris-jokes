@@ -12,7 +12,7 @@ const JokeItem = ({ joke }) => {
             className={styles.card}
         >
             <CardContent className={styles.cardContent}>
-                <Typography>Joke Value</Typography>
+                <Typography>{joke.value}</Typography>
             </CardContent>
             <CardActions>
                 <Button

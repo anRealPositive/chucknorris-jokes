@@ -1,13 +1,22 @@
 // libs
-import React from 'react';
+import React, { useContext } from 'react';
 
 // components
 import JokeItem from '../JokeItem';
 
+// context
+import { JokesContext } from '../../context/JokesProvider';
+
 const JokeList = () => {
+    const { jokes } = useContext(JokesContext);
+
     return (
         <>
-            <JokeItem joke='joke'/>
+            {
+                jokes.map(joke => (
+                    <JokeItem joke={joke}/>
+                ))
+            }
         </>
     );
 };
