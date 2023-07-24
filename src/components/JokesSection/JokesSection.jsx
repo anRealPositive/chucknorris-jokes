@@ -5,18 +5,35 @@ import { Box } from '@mui/material';
 // components
 import JokeList from '../JokeList';
 
+// constants
+import { JOKES_TABS } from '../../constants';
+
 // styles
 import styles from './styles.module.scss';
 
-const JokesSection = () => {
+/**
+ * Returns list of jokes
+ * @param {function} currentTab
+ * @returns {JSX.Element}
+ */
+
+const JokesSection = ({ currentTab }) => {
     return (
         <>
-            <Box
-                role='tabpanel'
-                className={styles.box}
-            >
-                <JokeList />
-            </Box>
+            { [JOKES_TABS.JOKES, JOKES_TABS.FAVOURITE_JOKES].map((jokeType) => {
+                return (
+                    <Box
+                        key={jokeType}
+                        role='tabpanel'
+                        hidden={currentTab !== jokeType}
+                        className={styles.box}
+                    >
+                    <JokeList
+                        isFavouriteJokes={Boolean(jokeType === JOKES_TABS.FAVOURITE_JOKES)}
+                    />
+                    </Box>
+                )
+            })}
         </>
     )
 }

@@ -7,16 +7,20 @@ import JokeItem from '../JokeItem';
 // context
 import { JokesContext } from '../../context/JokesProvider';
 
-const JokeList = () => {
-    const { jokes } = useContext(JokesContext);
+const JokeList = ({ isFavouriteJokes }) => {
+    const { jokes, favouriteJokes } = useContext(JokesContext);
+
+    const currentJokes = isFavouriteJokes ? favouriteJokes : jokes;
 
     return (
         <>
-            {
-                jokes.map(joke => (
-                    <JokeItem joke={joke}/>
-                ))
-            }
+            { currentJokes &&
+                currentJokes.map(currentJoke => (
+                <JokeItem
+                    key={currentJoke.id}
+                    joke={currentJoke}
+                />
+            ))}
         </>
     );
 };
