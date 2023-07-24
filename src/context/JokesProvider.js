@@ -47,6 +47,11 @@ const JokesProvider = ({children}) => {
       setFavouriteJokes([favouriteJoke, ...favouriteJokes]);
     };
 
+    const deleteJokeFromFavourite = id => {
+      const updatedFavouriteJokes = favouriteJokes.filter(joke => joke.id !== id);
+      setFavouriteJokes(updatedFavouriteJokes);
+    };
+
     useEffect(() => {
       apiCall();
     }, []);
@@ -59,7 +64,7 @@ const JokesProvider = ({children}) => {
         error,
         favouriteJokes,
         addJokeToFavourite,
-
+        deleteJokeFromFavourite,
       }}>
       {children}
     </JokesContext.Provider>
