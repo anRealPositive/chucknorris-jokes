@@ -1,5 +1,5 @@
 // libs
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CssBaseline, Container } from '@mui/material';
 
 // components
@@ -10,6 +10,9 @@ import Loader from '../Loader';
 // context
 import { JokesContext } from '../../context/JokesProvider';
 
+// constants
+import { JOKES_TABS } from '../../constants';
+
 // styles
 import styles from './styles.module.scss';
 
@@ -19,10 +22,15 @@ import styles from './styles.module.scss';
  */
 
 const Layout = () => {
+    const [currentTab, setCurrentTab] = useState(JOKES_TABS.JOKES);
     const { 
         isLoading,
         error,
     } = useContext(JokesContext);
+
+    const changeTab = (event, value) => {
+        setCurrentTab(value);
+    };
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -37,8 +45,12 @@ const Layout = () => {
                 maxWidth='md'
                 className={styles.container}
             >
-                <Header title='Chuck Norris Jokes'/>
-                <JokesSection />
+                <Header
+                    title='Chuck Norris Jokes'
+                    changeTab={changeTab}
+                    currentTab={currentTab}
+                />
+                <JokesSection currentTab={currentTab}/>
             </Container>
         </div>
     );

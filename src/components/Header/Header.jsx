@@ -13,7 +13,7 @@ import styles from './styles.module.scss';
  * @returns {JSX.Element}
  */
 
-const Header = ({ title }) => {
+const Header = ({ title, changeTab, currentTab }) => {
     return (
         <>
             <Typography
@@ -21,7 +21,7 @@ const Header = ({ title }) => {
                 align='center'
                 className={styles.title}
             >
-                {title}
+                { title }
             </Typography>
             <AppBar
                 color='default'
@@ -29,8 +29,8 @@ const Header = ({ title }) => {
                 style={{ backgroundColor: 'rgb(19, 47, 76)' }}
             >
                 <Tabs
-                    value={'Tab'}
-                    onChange={(e) => e}
+                    value={ currentTab }
+                    onChange={ changeTab }
                     centered
                 >
                 <Tab
