@@ -65,7 +65,7 @@ const JokeItem = ({ joke }) => {
 
 JokeItem.propTypes = {
     joke: PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         value: PropTypes.string.isRequired,
     }).isRequired,
 };
