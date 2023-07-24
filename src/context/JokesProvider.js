@@ -21,7 +21,7 @@ const JokesProvider = ({ children }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             apiCallForSingleJoke();
-        }, 2000);
+        }, 5000);
 
         return () => clearInterval(interval);
     }, [jokes]);

@@ -52,7 +52,7 @@ const JokeItem = ({ joke }) => {
                     disabled={
                         favouriteJokes.length === 0 ||
                         !favouriteJokes.find(
-                            (favouriteJoke) => favouriteJoke.id
+                            (favouriteJoke) => favouriteJoke.id === joke.id
                         )
                     }
                 >

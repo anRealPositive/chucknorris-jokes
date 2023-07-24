@@ -1,8 +1,9 @@
+// libs
+import React from 'react';
+
 // Layout
 import Layout from './components/Layout';
 
-function App() {
-    return <Layout />;
-}
+const App = () => <Layout />;
 
 export default App;
