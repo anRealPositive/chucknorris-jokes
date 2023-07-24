@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 // api
-import { fetchData } from '../utils/fetchData';
+import { fetchData, fetchSingleJoke } from '../utils/fetchData';
 
 // local storage
 import { setItem, getItem } from '../utils/localStorage';
@@ -13,13 +13,33 @@ const JokesContext = React.createContext({});
 const JokesProvider = ({children}) => {
     const [jokes, setJokes] = useState([]);
     const [favouriteJokes, setFavouriteJokes] = useState([]);
+  
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-
-    const apiCall = async () => {
-        const response = await fetchData();
-        console.log('response', response);
   
+    useEffect(() => {
+      if (jokes.length === 10) jokes.pop();
+      const interval = setInterval(() => {
+        apiCallForSingleJoke();
+      }, 2000);
+
+      return () => clearInterval(interval);
+    }, [jokes]);
+
+    const apiCallForSingleJoke = async () => {
+      const response = await fetchSingleJoke();
+
+      setJokes((prevState) => {
+        return [
+          response.joke,
+          ...prevState,
+        ]
+      });
+    };
+
+    const apiCallForAllJokes = async () => {
+        const response = await fetchData();
+    
         setJokes(response.jokes);
         setIsLoading(response.isLoading);
         setError(response.error);
@@ -53,7 +73,7 @@ const JokesProvider = ({children}) => {
     };
 
     useEffect(() => {
-      apiCall();
+      apiCallForAllJokes();
     }, []);
 
   return (
