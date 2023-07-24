@@ -2,10 +2,13 @@
 import React from 'react';
 import { CssBaseline, Container } from '@mui/material';
 
+// components
+import Header from '../Header';
+
 // styles
 import styles from './styles.module.scss';
 
-export default function Layout() {
+const Layout = () => {
     return (
         <div className={styles.root}>
             <CssBaseline />
@@ -13,8 +16,10 @@ export default function Layout() {
                 maxWidth='md'
                 className={styles.container}
             >
-                Hello
+                <Header title='Chuck Norris Jokes'/>
             </Container>
         </div>
     );
 };
+
+export default Layout;
