@@ -1,5 +1,6 @@
 // libs
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import {
     Typography,
     Card,
@@ -60,6 +61,13 @@ const JokeItem = ({ joke }) => {
             </CardActions>
         </Card>
     );
+};
+
+JokeItem.propTypes = {
+    joke: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        value: PropTypes.string.isRequired,
+    }).isRequired,
 };
 
 export default JokeItem;

@@ -1,5 +1,6 @@
 // libs
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Typography, Tab, Tabs, AppBar } from '@mui/material';
 
 // styles
@@ -43,6 +44,12 @@ const Header = ({ title, changeTab, currentTab }) => {
             </AppBar>
         </>
     );
+};
+
+Header.propTypes = {
+    title: PropTypes.string.isRequired,
+    changeTab: PropTypes.func.isRequired,
+    currentTab: PropTypes.number.isRequired,
 };
 
 export default Header;

@@ -1,5 +1,6 @@
 // libs
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 // api
 import { fetchData, fetchSingleJoke } from '../utils/fetchData';
@@ -88,6 +89,10 @@ const JokesProvider = ({ children }) => {
             {children}
         </JokesContext.Provider>
     );
+};
+
+JokesProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };
 
 export { JokesProvider, JokesContext };

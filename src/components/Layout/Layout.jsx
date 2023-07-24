@@ -25,6 +25,7 @@ const Layout = () => {
     const [currentTab, setCurrentTab] = useState(JOKES_TABS.JOKES);
     const { isLoading, error } = useContext(JokesContext);
 
+    console.log('currentTab', currentTab);
     const changeTab = (_, value) => {
         setCurrentTab(value);
     };

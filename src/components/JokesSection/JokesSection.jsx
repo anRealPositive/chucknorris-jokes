@@ -1,5 +1,6 @@
 // libs
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
 
 // components
@@ -38,6 +39,10 @@ const JokesSection = ({ currentTab }) => {
             })}
         </>
     );
+};
+
+JokesSection.propTypes = {
+    currentTab: PropTypes.number.isRequired,
 };
 
 export default JokesSection;
