@@ -4,12 +4,15 @@ import React, { useEffect, useState } from 'react';
 // api
 import { fetchData } from '../utils/fetchData';
 
+// local storage
+import { setItem, getItem } from '../utils/localStorage';
+
 // context
 const JokesContext = React.createContext({});
 
 const JokesProvider = ({children}) => {
-    
     const [jokes, setJokes] = useState([]);
+    const [favouriteJokes, setFavouriteJokes] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -20,11 +23,33 @@ const JokesProvider = ({children}) => {
         setJokes(response.jokes);
         setIsLoading(response.isLoading);
         setError(response.error);
-  };
+    };
 
-  useEffect(() => {
-    apiCall();
-  }, []);
+    useEffect(() => {
+      if (favouriteJokes.length) {
+        setItem('jokes', favouriteJokes);
+      }
+    }, [favouriteJokes]);
+
+    useEffect(() => {
+      const jokesFromLocalStorage = getItem('jokes');
+      if (jokesFromLocalStorage) setFavouriteJokes(jokesFromLocalStorage);
+    }, []);
+
+    const addJokeToFavourite = id => {
+      if (favouriteJokes.find(joke => joke.id === id)) return;
+  
+      const favouriteJoke = jokes.find(joke => joke.id === id);
+  
+      const jokesFromLocalStorage = getItem('jokes');
+      if (jokesFromLocalStorage && jokesFromLocalStorage.length >= 10) return;
+  
+      setFavouriteJokes([favouriteJoke, ...favouriteJokes]);
+    };
+
+    useEffect(() => {
+      apiCall();
+    }, []);
 
   return (
     <JokesContext.Provider
@@ -32,6 +57,9 @@ const JokesProvider = ({children}) => {
         jokes,
         isLoading,
         error,
+        favouriteJokes,
+        addJokeToFavourite,
+
       }}>
       {children}
     </JokesContext.Provider>
