@@ -7,6 +7,7 @@ import Header from '../Header';
 
 // styles
 import styles from './styles.module.scss';
+import JokesSection from '../JokesSection';
 
 const Layout = () => {
     return (
@@ -17,6 +18,7 @@ const Layout = () => {
                 className={styles.container}
             >
                 <Header title='Chuck Norris Jokes'/>
+                <JokesSection />
             </Container>
         </div>
     );
